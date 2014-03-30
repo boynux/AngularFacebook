@@ -18,15 +18,6 @@ var module = angular.module ('bnx.module.facebook', [])
 
             processPostInitializeQ ();
         };
-
-        (function() {
-            var e = document.createElement('script');
-            e.type = 'text/javascript';
-            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-            e.async = true;
-            document.getElementById('fb-root').appendChild(e);
-        }(document));
-
     };
 
     function executeWhenInitialized (callback, self, args) {
@@ -102,5 +93,17 @@ var module = angular.module ('bnx.module.facebook', [])
             login: login
         }
     }];
+});
+
+module.directive ('facebook', function ($location, facebook) {
+    var template = 
+        "<div id='fb-root'><script type='text/javascript' async='true' src='" + 
+        $location.protocol() + 
+        "://connect.facebook.net/en_US/all.js'></script></div>";
+
+    return {
+        restrict:'EA',
+        template: template,
+    }
 });
 
