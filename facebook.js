@@ -118,8 +118,7 @@ var module = angular.module ('bnx.module.facebook', [])
 module.directive ('facebook', function ($location, facebook) {
     var template = 
         "<div id='fb-root'><script type='text/javascript' async='true' src='" + 
-        $location.protocol() + 
-        "://connect.facebook.net/en_US/all.js'></script></div>";
+        "//connect.facebook.net/en_US/all.js' id='facebook-jssdk'></script></div>";
 
     return {
         restrict:'EA',

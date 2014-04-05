@@ -1,4 +1,8 @@
 AngularFacebook
 ===============
 
-Simple AngularJs module for Facebook API.
+AngularJs module for Facebook API.
+
+More info at: http://www.boynux.com/angularjs-facebook-integration/
+
+Lienced under GPLv3
