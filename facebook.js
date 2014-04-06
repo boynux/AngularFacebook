@@ -135,15 +135,14 @@ module.directive ('facebook', function ($location, facebook) {
  * Shows facebook login button.
  *
  * @param {string} size defines button size, possible values are 'icon', 'small', 'medium',
- *                 'large', 'xlarge'. If you use string literal make sure you wrap it in
- *                 **signle** quotes. eg. size="'medium'". default is "medium"
+ *                 'large', 'xlarge'. default is "medium"
  * @param {boolean} autoLogout whether to show logout button after user logs into facebook.
  *                  default is false.
  * @param {boolean} showFaces shows friends icon whom subscribed into this ad.
  *                  default is false.
  *
  * @example
- *                  <facebook-login size="'large'" auto-logout="false"></facebook-logout>
+ *                  <facebook-login size="large" auto-logout="false"></facebook-logout>
  */
 module.directive ('facebookLogin', function () {
     var template =
@@ -157,11 +156,61 @@ module.directive ('facebookLogin', function () {
     return {
         restrict: 'E',
         scope: {
-            'autoLogout': '=',
-            'size': '=',
-            'showFaces': '='
+            'autoLogout': '@',
+            'size': '@',
+            'showFaces': '@'
         },
         template: template
+    }
+});
+
+/**
+ * @ngdoc directive
+ * @name facebookLike
+ * @restrict E
+ *
+ * @description
+ * Shows facebook like/share/recommend button.
+ *
+ * @param {string} href indicates the page that will be liked. if not provided current
+ *                 absolute URL will be used.
+ * @param {string} colorScheme possible value are light and dark, default is 'light'
+ * @param {string} layout possible values standard, button_count, box_count, 
+ *                 default is 'standard'. see Facebook FAQ for more details: 
+ *                  https://developers.facebook.com/docs/plugins/like-button/#faqlayouts
+ * @param {boolean} showFaces whether to show profile photos below button, default is false
+ * @param {boolean} share includes share button near like button, default is false
+ * @param {string} action value can be 'like' or 'recommend', default is 'like'
+ *
+ * @example
+ *                  <facebook-like show-faces="true" action="recommend"></facebook-logout>
+ */
+
+module.directive('facebookLike', function ($location) {
+    var template = '<div class="fb-like" ' +
+        'data-href="{{href || currentPage}}" ' +
+        'data-colorscheme="{{colorScheme || \'light\'}}" ' +
+        'data-layout="{{layout || \'standard\'}}" ' +
+        'data-action="{{ action || \'like\'}}" ' +
+        'data-show-faces="{{!!showFaces}}" ' +
+        'data-share="{{!!share}}"' +
+        'data-action="{{action || \'like\'}}"' +
+        'data-send="false"></div>';
+
+    return {
+        restrict:'E',
+        scope: {
+            'colorScheme': '@',
+            'layout':      '@',
+            'showFaces':   '@',
+            'href':        '@',
+            'action':      '@',
+            'share':       '@',
+        },
+        template: template,
+        link: function(scope, element, attrs) {
+            scope.currentPage = $location.absUrl();
+        },
     }
 });
 
