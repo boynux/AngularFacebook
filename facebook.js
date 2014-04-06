@@ -126,3 +126,42 @@ module.directive ('facebook', function ($location, facebook) {
     }
 });
 
+/**
+ * @ngdoc directive
+ * @name facebookLogin
+ * @restrict E
+ *
+ * @description
+ * Shows facebook login button.
+ *
+ * @param {string} size defines button size, possible values are 'icon', 'small', 'medium',
+ *                 'large', 'xlarge'. If you use string literal make sure you wrap it in
+ *                 **signle** quotes. eg. size="'medium'". default is "medium"
+ * @param {boolean} autoLogout whether to show logout button after user logs into facebook.
+ *                  default is false.
+ * @param {boolean} showFaces shows friends icon whom subscribed into this ad.
+ *                  default is false.
+ *
+ * @example
+ *                  <facebook-login size="'large'" auto-logout="false"></facebook-logout>
+ */
+module.directive ('facebookLogin', function () {
+    var template =
+        '<div class="fb-login-button" ' +
+        'data-max-rows="1" ' +
+        'data-size="{{size||\'medium\'}}" ' +
+        'data-show-faces="{{!!showFaces}}" ' +
+        'data-auto-logout-link="{{!!autoLogout}}" ' +
+        '></div>';
+
+    return {
+        restrict: 'E',
+        scope: {
+            'autoLogout': '=',
+            'size': '=',
+            'showFaces': '='
+        },
+        template: template
+    }
+});
+
