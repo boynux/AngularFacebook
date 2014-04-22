@@ -151,6 +151,7 @@ module.directive ('facebookLogin', function () {
         'data-size="{{size||\'medium\'}}" ' +
         'data-show-faces="{{!!showFaces}}" ' +
         'data-auto-logout-link="{{!!autoLogout}}" ' +
+        'data-scope="{{scope}}"' +
         '></div>';
 
     return {
@@ -158,7 +159,8 @@ module.directive ('facebookLogin', function () {
         scope: {
             'autoLogout': '@',
             'size': '@',
-            'showFaces': '@'
+            'showFaces': '@',
+            'scope': '@'
         },
         template: template
     }
