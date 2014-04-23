@@ -30,7 +30,7 @@ var module = angular.module ('bnx.module.facebook', [])
 
     this.init = function (params) {
         window.fbAsyncInit = function() {
-            $.extend (defaultParams, params);
+            angular.extend (defaultParams, params);
             FB.init(defaultParams);
     
             initialized = true;
@@ -140,6 +140,8 @@ module.directive ('facebook', function ($location, facebook) {
  *                  default is false.
  * @param {boolean} showFaces shows friends icon whom subscribed into this ad.
  *                  default is false.
+ * @param {string}  scope comma separated list of required permission that needs to be granted 
+ *                  during login default is basic_info.
  *
  * @example
  *                  <facebook-login size="large" auto-logout="false"></facebook-logout>
@@ -151,7 +153,7 @@ module.directive ('facebookLogin', function () {
         'data-size="{{size||\'medium\'}}" ' +
         'data-show-faces="{{!!showFaces}}" ' +
         'data-auto-logout-link="{{!!autoLogout}}" ' +
-        'data-scope="{{scope}}"' +
+        'data-scope="{{scope || \'basic_info\'}}"' +
         '></div>';
 
     return {
