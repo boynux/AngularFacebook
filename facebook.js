@@ -20,8 +20,8 @@
 
 var module = angular.module ('bnx.module.facebook', [])
 .provider ('facebook', function facebookProvider ($injector) {
-    var initialized = false;
-    var defaultParams = { appId: '123456', status: true, cookie: true, xfbml: true };
+    this.initialized = false;
+    var defaultParams = { appId: '', status: true, cookie: true, xfbml: true };
     var facebookEvents = {
         'auth': ['authResponseChange', 'statusChange', 'login', 'logout']
     };
@@ -33,7 +33,7 @@ var module = angular.module ('bnx.module.facebook', [])
             angular.extend (defaultParams, params);
             FB.init(defaultParams);
     
-            initialized = true;
+            this.initialized = true;
             console.log ("Facebook initialization done.");
 
             processPostInitializeQ ();
@@ -102,18 +102,40 @@ var module = angular.module ('bnx.module.facebook', [])
             });
         }
 
-        if (!initialized) {
+        if (!this.initialized) {
             executeWhenInitialized (registerEventHandlers, this, []);
         } else {
             registerEventHandlers ();
         }
 
+        var provider = this;
         return  {
+            initialized: function () {
+                return provider.initialized;
+            },
+
+            init: provider.init,
             api: api,
             login: login
         }
     }];
 });
+
+/**
+ * @ngdoc directive
+ * @name facebook
+ * @restrict EA
+ *
+ * @description
+ * Facebook initialization directive.
+ *
+ * @param {string} appId Facebook app id.
+ *
+ * @param {object} parameters initialization parameters, for details refer to init function
+ *                 description.
+ * @example
+ *                  <facebook app-id="123456"></facebook>
+ */
 
 module.directive ('facebook', function ($location, facebook) {
     var template = 
@@ -123,6 +145,20 @@ module.directive ('facebook', function ($location, facebook) {
     return {
         restrict:'EA',
         template: template,
+
+        scope: {
+            appId: '@',
+            parameters: '='
+        },
+
+        link: function (scope, element, attrs) {
+            if (!facebook.initialized ()) {
+                var parameters = scope.parameters || {};
+
+                angular.extend (parameters, {appId: scope.appId});
+                facebook.init (parameters);
+            }
+        }
     }
 });
 
