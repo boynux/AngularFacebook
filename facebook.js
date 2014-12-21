@@ -223,7 +223,7 @@ module.directive ('facebookLogin', function () {
  * @param {string} action value can be 'like' or 'recommend', default is 'like'
  *
  * @example
- *                  <facebook-like show-faces="true" action="recommend"></facebook-logout>
+ *                  <facebook-like show-faces="true" action="recommend"></facebook-like>
  */
 
 module.directive('facebookLike', function ($location) {
