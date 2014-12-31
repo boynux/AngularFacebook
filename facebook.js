@@ -229,6 +229,7 @@ module.directive ('facebookLogin', function () {
 module.directive('facebookLike', function ($location) {
     var template = '<div class="fb-like" ' +
         'data-href="{{href || currentPage}}" ' +
+        'data-width="{{width || 250}}"' + 
         'data-colorscheme="{{colorScheme || \'light\'}}" ' +
         'data-layout="{{layout || \'standard\'}}" ' +
         'data-action="{{ action || \'like\'}}" ' +
@@ -244,6 +245,7 @@ module.directive('facebookLike', function ($location) {
             'layout':      '@',
             'showFaces':   '@',
             'href':        '@',
+            'width':       '@',
             'action':      '@',
             'share':       '@',
         },
