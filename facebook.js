@@ -180,7 +180,7 @@ module.directive ('facebook', function ($location, facebook) {
  *                  during login default is basic_info.
  *
  * @example
- *                  <facebook-login size="large" auto-logout="false"></facebook-logout>
+ *                  <facebook-login size="large" auto-logout="false"></facebook-login>
  */
 module.directive ('facebookLogin', function () {
     var template =
