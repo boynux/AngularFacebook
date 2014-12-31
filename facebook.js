@@ -210,7 +210,7 @@ module.directive ('facebookLogin', function () {
  * @restrict E
  *
  * @description
- * Shows facebook like/share/recommend button.
+ * Shows facebook like/share/recommend button, documentation here : https://developers.facebook.com/docs/plugins/like-button
  *
  * @param {string} href indicates the page that will be liked. if not provided current
  *                 absolute URL will be used.
