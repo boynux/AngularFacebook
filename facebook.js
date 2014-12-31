@@ -234,7 +234,7 @@ module.directive('facebookLike', function ($location) {
         'data-layout="{{layout || \'standard\'}}" ' +
         'data-action="{{ action || \'like\'}}" ' +
         'data-show-faces="{{!!showFaces}}" ' +
-        'data-share="{{!!share}}"' +
+        'data-share="{{share || \'true\'}}"' +
         'data-action="{{action || \'like\'}}"' +
         'data-send="false"></div>';
 
