@@ -138,9 +138,12 @@ var module = angular.module ('bnx.module.facebook', [])
  */
 
 module.directive ('facebook', function ($location, facebook) {
-    var template = 
-        "<div id='fb-root'><script type='text/javascript' async='true' src='" + 
-        "//connect.facebook.net/en_US/all.js' id='facebook-jssdk'></script></div>";
+    var template = "<div id='fb-root'></div>";
+
+    var script = document.createElement('script');
+    script.src = "//connect.facebook.net/en_US/all.js'"
+    script.id = 'facebook-jssdk'
+    script.async = true
 
     return {
         restrict:'EA',
@@ -153,6 +156,7 @@ module.directive ('facebook', function ($location, facebook) {
 
         link: function (scope, element, attrs) {
             if (!facebook.initialized ()) {
+                document.body.appendChild(script);
                 var parameters = scope.parameters || {};
 
                 angular.extend (parameters, {appId: scope.appId});
