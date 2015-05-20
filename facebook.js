@@ -21,7 +21,7 @@
 var module = angular.module ('bnx.module.facebook', [])
 .provider ('facebook', function facebookProvider ($injector) {
     this.initialized = false;
-    var defaultParams = { appId: '', status: true, cookie: true, xfbml: true };
+    var defaultParams = { appId: '', status: true, cookie: true, xfbml: true, version: 'v2.3' };
     var facebookEvents = {
         'auth': ['authResponseChange', 'statusChange', 'login', 'logout']
     };
@@ -141,7 +141,7 @@ module.directive ('facebook', function ($location, facebook) {
     var template = "<div id='fb-root'></div>";
 
     var script = document.createElement('script');
-    script.src = "//connect.facebook.net/en_US/all.js'"
+    script.src = "//connect.facebook.net/en_US/sdk.js'"
     script.id = 'facebook-jssdk'
     script.async = true
 
