@@ -13,4 +13,4 @@ Tutorials:
 Licensed under GPLv3
 
 
-> If you're looking for CoffeeScript version of this library, look at [Francios Roland](https://github.com/francois-roland/AngularFacebook) job.
+> If you're looking for CoffeeScript version of this library, look at [Francois Roland](https://github.com/francois-roland/AngularFacebook) job.
