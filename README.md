@@ -11,3 +11,6 @@ Tutorials:
 * http://www.boynux.com/facebook-api-with-angularjs-app-part-2/
 
 Licensed under GPLv3
+
+
+> If you're looking for CoffeeScript version of this library, look at [Francios Roland](https://github.com/francois-roland/AngularFacebook) job.
