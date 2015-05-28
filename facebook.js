@@ -214,7 +214,7 @@ module.directive ('facebookLogin', function () {
  * @restrict E
  *
  * @description
- * Shows facebook like/share/recommend button.
+ * Shows facebook like/share/recommend button, documentation here : https://developers.facebook.com/docs/plugins/like-button
  *
  * @param {string} href indicates the page that will be liked. if not provided current
  *                 absolute URL will be used.
@@ -233,11 +233,11 @@ module.directive ('facebookLogin', function () {
 module.directive('facebookLike', function ($location) {
     var template = '<div class="fb-like" ' +
         'data-href="{{href || currentPage}}" ' +
+        'data-width="{{width || 250}}"' + 
         'data-colorscheme="{{colorScheme || \'light\'}}" ' +
         'data-layout="{{layout || \'standard\'}}" ' +
-        'data-action="{{ action || \'like\'}}" ' +
         'data-show-faces="{{!!showFaces}}" ' +
-        'data-share="{{!!share}}"' +
+        'data-share="{{share || \'true\'}}"' +
         'data-action="{{action || \'like\'}}"' +
         'data-send="false"></div>';
 
@@ -248,6 +248,7 @@ module.directive('facebookLike', function ($location) {
             'layout':      '@',
             'showFaces':   '@',
             'href':        '@',
+            'width':       '@',
             'action':      '@',
             'share':       '@',
         },
